@@ -48,7 +48,14 @@ module.exports = {
   devServer: {
     historyApiFallback: true,
     noInfo: true,
-    overlay: true
+    overlay: true,
+    port: 8088,
+    proxy: {
+      '/*': {
+        target: 'http://localhost:8088/back-end/'
+      }
+    }
+  }
   },
   performance: {
     hints: false
