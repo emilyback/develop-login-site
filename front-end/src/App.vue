@@ -1,8 +1,13 @@
 <template>
   <div id="app">
+    <div v-if="!isAdmin">
       ID: <input type="text" name="loginId" v-model="loginId"><br/>
       PWD: <input type="password" name="loginPwd" v-model="loginPwd"><br/>
-      <button @click="adminCheck(loginId,loginPwd)">log in </button>    
+      <button @click="adminCheck(loginId,loginPwd)">log in </button>
+    </div>
+    <div v-else>
+      Welcome Admin
+    </div>
   </div>
 </template>
 
