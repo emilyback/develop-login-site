@@ -32,20 +32,25 @@ public class Login extends HttpServlet {
 		String adminId = getServletContext().getInitParameter("adminId");
 		String adminPwd = getServletContext().getInitParameter("adminPwd");
 		
-		int admin =0;
+		int admin = 0;
 				
 		
 		String loginId = request.getParameter("loginId");
 		String loginPwd = request.getParameter("loginPwd");
 		
-		boolean isAdminId = loginId.equals(adminId);
-		boolean isAdminPwd = loginPwd.equals(adminPwd);
+		boolean isAdminId = loginId.equals(adminId); //같으면 true
+		boolean isAdminPwd = loginPwd.equals(adminPwd); //같으면 true
 		
 		if(isAdminId && isAdminPwd) admin = 1;
+		
+		else {
+			admin = 0;
+		}
 		
 		//Sysetem.out.println(lo)
 		
 		response.setIntHeader("isAdmin", admin);
+		response.getWriter().write(admin == 1 ? "OK" : "FAIL");
 		
 	}
 

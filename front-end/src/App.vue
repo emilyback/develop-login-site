@@ -18,8 +18,11 @@ export default {
   name: 'app',
   data () {
     return {
+      loginParam:{
       loginId : '',
       loginPwd : '',
+      },
+     
       isloginAdmin : 0
       //msg: 'Welcome to Your Vue.js App'
     }
@@ -27,18 +30,21 @@ export default {
   methods:{
    onSubmit(){
      //debugger
-     let params = new URLSearchParams()
+     /*let params = new URLSearchParams()
      params.append('loginId', this.loginId)
      params.append('loginPwd', this.loginPwd)
-
-     axios.post('/api/LoginCheck',params).then(res =>{ //back-end 실행 후 결과 값 = res
-      this.isloginAdmin = res.headers.isadmin
-
-      console.log(this.isloginAdmin)
+    */
+     axios.post('/api/LoginCheck',this.loginParam).then(res =>{ //back-end 실행 후 결과 값 = res
+      console.log('res', res)
+      if(res.data.result === "OK")
+        this.isloginAdmin = true
+      else
+        alert('틀렸어!')
 
      }).catch((ex) => {
        console.warn("Error")
-      }
+       alert('error')
+      }  
      )}
   }
 }
